@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\src\\components\\LogIn.svelte"
+  ],
+  "sourcesContent": [
+    "<style>\r\n    .row{\r\n        overflow:hidden;\r\n    }\r\n</style>\r\n<script>\r\n  export let nav;\r\n  export let naver;\r\n    document.title = 'Login | ELI';\r\n    function logIn(){\r\n      naver.set('/nav');\r\n    }\r\n</script>\r\n<div class=\"row\" style=\"height:80vh\">\r\n    <div class=\"col s12 m4 offset-m4 valign-wrapper\" style=\"height:80vh\">\r\n      <div class=\"card gray lighten-1 valign z-depth-3\">\r\n        <div class=\"card-content white-text\">\r\n          <div class=\"card-title center-align\">\r\n            <img src=\"/images/ELIicon.png\" alt=\"ELI Icon\" class=\"card-img\" />\r\n          </div>\r\n          <div class=\"row\">\r\n            <form class=\"col s12\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <input id=\"user_name\" type=\"text\" class=\"validate\">\r\n                        <label for=\"user_name\">Username</label>\r\n                    </div>\r\n                    <div class=\"input-field col s12\">\r\n                        <input id=\"pass_word\" type=\"password\" class=\"validate\">\r\n                        <label for=\"pass_word\">Password</label>\r\n                    </div>\r\n                    <div class=\"col s12\">\r\n                        <label>\r\n                            <input type=\"checkbox\" />\r\n                            <span>Remember Me</span>\r\n                        </label>\r\n                    </div>\r\n                    <div class=\"col s12 center-align\">\r\n                        <button type=\"button\" class=\"waves-effect waves-light btn blue\" on:click={logIn}>Log In</button>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>"
+  ],
+  "names": [],
+  "mappings": "AACI,kBAAI,CAAC,AACD,SAAS,MAAM,AACnB,CAAC"
+}
