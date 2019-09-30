@@ -21,12 +21,24 @@ let routePats = [/(home)(\/)?([0-9]+)?/g];
 It is also where you define your router object which contains all of your routes.
 It also contains a function that applies the defined regular expressions to each route.
 
-```export let router = {
+```router = {
     '/': LogIn,
     '/home': Dashboard,
     '/main': Main,
     '/next': SecondMain,
      parseRoute:function(_v){
+         let r = _v;
+         routePats.forEach(function(p, i){
+            router.routeParams = [];
+            if(_v.match(p)){
+                let vals = p.exec(_v);
+                for(let i = 3; i < vals.length; i++){
+                    router.routeParams.push(vals[i]);
+                }
+                r = `/${vals[1]}`;
+            }
+         });
+         return r;
      },
      routeParams : []
 }
