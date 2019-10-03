@@ -10,7 +10,8 @@ This uses basic elements of svelte so no additional dependencies or libraries ne
 
 This is where you import your components and and define the regular expression(s) used to retrieve any route parameters you specify.
 
-```import LogIn from './LogIn.svelte';
+```
+import LogIn from './LogIn.svelte';
 import Dashboard from './Dashboard.svelte';
 import Main from './Main.svelte';
 import SecondMain from './SecondMain.svelte';
@@ -21,7 +22,8 @@ let routePats = [/(home)(\/)?([0-9]+)?/g];
 It is also where you define your router object which contains all of your routes.
 It also contains a function that applies the defined regular expressions to each route.
 
-```router = {
+```
+router = {
     '/': LogIn,
     '/home': Dashboard,
     '/main': Main,
@@ -42,4 +44,41 @@ It also contains a function that applies the defined regular expressions to each
      },
      routeParams : []
 }
+```
+## Components ##
+Other than the routes.js file (or whatever you want to call it) you only need two components to utilize this router
+* Container.svelte
+* Navigator.svelte
+### Container.svelte ###
+```
+<script>
+   export let base;
+	  import { router, curRoute, subRoute } from './routes.js';
+</script>
+{#if base == 'cur'}
+    <svelte:component this={router[router.parseRoute($curRoute)]} nav={router} navctrl={curRoute} />
+{:else}
+    <svelte:component this={router[$subRoute]} nav={router} navctrl={subRoute} />
+{/if}
+```
+### Navigator.svelte ###
+```
+<script>
+    export let path;
+    export let ctrl;
+    export let content;
+    export let isLink = true;
+    export let btnType = 'button'
+    export let btnClass = 'btn-lg btn-primary btn-block';
+    export let lnkClass = ''
+    export let func = function(e){
+        e.preventDefault();
+        ctrl.set(path);
+    }
+</script>
+{#if isLink == true}
+    <a class={lnkClass} href={path} on:click={func}>{content}</a>
+{:else}
+  <button class="btn {btnClass}" type={btnType} on:click={func}>{content}</button>
+{/if}
 ```
